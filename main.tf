@@ -1,6 +1,5 @@
 module "vpc" {
   source = "./modules/vpc"
-  
   project_name       = var.project_name
   environment        = var.environment
   vpc_cidr          = var.vpc_cidr
@@ -9,21 +8,18 @@ module "vpc" {
 
 module "iam" {
   source = "./modules/iam"
-  
   project_name = var.project_name
   environment  = var.environment
 }
 
 module "ecr" {
   source = "./modules/ecr"
-  
   project_name = var.project_name
   environment  = var.environment
 }
 
 module "alb" {
   source = "./modules/alb"
-  
   project_name    = var.project_name
   environment     = var.environment
   vpc_id          = module.vpc.vpc_id
@@ -33,7 +29,6 @@ module "alb" {
 
 module "ecs" {
   source = "./modules/ecs"
-  
   project_name             = var.project_name
   environment              = var.environment
   vpc_id                   = module.vpc.vpc_id
