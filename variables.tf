@@ -11,7 +11,9 @@ variable "environment" {
 variable "project_name" {
   description = "Project name"
   type        = string
-  default     = "healthcare-hack"
+  default     = "health-hack"
+
+
 }
 
 variable "vpc_cidr" {
