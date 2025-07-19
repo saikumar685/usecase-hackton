@@ -1,4 +1,4 @@
-name: Terraform infra CI/CD
+name: UseCase Infra
 
 on:
   workflow_dispatch:

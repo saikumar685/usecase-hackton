@@ -1,4 +1,4 @@
-name: Build and Deploy Microservices
+name: Build and Deploy 
 
 on:
   push:
@@ -122,28 +122,28 @@ jobs:
         if: needs.build-patient-service.result == 'success'
         run: |
           aws ecs update-service \
-            --cluster healthcare-app-dev-cluster \
-            --service healthcare-app-dev-patient-service \
+            --cluster health-hack-dev-sai-cluster \
+            --service health-hack-dev-sai-patient-service \
             --force-new-deployment
 
       - name: Update Appointment Service
         if: needs.build-appointment-service.result == 'success'
         run: |
           aws ecs update-service \
-            --cluster healthcare-app-dev-cluster \
-            --service healthcare-app-dev-appointment-service \
+            --cluster health-hack-dev-sai-cluster \
+            --service health-hack-dev-sai-appointment-service \
             --force-new-deployment
 
       - name: Wait for services to stabilize
         run: |
           if [[ "${{ needs.build-patient-service.result }}" == "success" ]]; then
             aws ecs wait services-stable \
-              --cluster healthcare-app-dev-cluster \
-              --services healthcare-app-dev-patient-service
+              --cluster health-hack-dev-sai-cluster \
+              --services health-hack-dev-sai-patient-service
           fi
           
           if [[ "${{ needs.build-appointment-service.result }}" == "success" ]]; then
             aws ecs wait services-stable \
-              --cluster healthcare-app-dev-cluster \
-              --services healthcare-app-dev-appointment-service
+              --cluster health-hack-dev-sai-cluster \
+              --services health-hack-dev-sai-appointment-service
           fi
